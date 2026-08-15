@@ -18,8 +18,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Buoc 3 - Dong hop (Build Docker)
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/hop-bento-tren-mang:latest .
+      - name: Buoc 3 - Dong hop Java (Build Docker)
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/java-app-senior:latest .
 
       - name: Buoc 4 - Cho hang ra Tong kho (Push len Docker Hub)
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/hop-bento-tren-mang:latest
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/java-app-senior:latest
