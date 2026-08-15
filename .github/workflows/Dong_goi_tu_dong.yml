@@ -1,0 +1,19 @@
+name: Day chuyen Docker tu dong
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dong_goi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Buoc 1 - Thay quan ao (Lay code ve)
+        uses: actions/checkout@v3
+
+      - name: Buoc 2 - Kiem tra nguyen lieu (Doc file)
+        run: cat hello.txt
+
+      - name: Buoc 3 - Dong hop (Build Docker)
+        run: docker build -t hop-bento-tren-mang .
