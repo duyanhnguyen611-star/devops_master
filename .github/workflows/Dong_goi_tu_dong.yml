@@ -6,14 +6,20 @@ on:
       - main
 
 jobs:
-  dong_goi:
+  dong_goi_va_xuat_xuong:
     runs-on: ubuntu-latest
     steps:
       - name: Buoc 1 - Thay quan ao (Lay code ve)
         uses: actions/checkout@v3
 
-      - name: Buoc 2 - Kiem tra nguyen lieu (Doc file)
-        run: cat hello.txt
+      - name: Buoc 2 - Trinh the can cuoc (Dang nhap Docker Hub)
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Buoc 3 - Dong hop (Build Docker)
-        run: docker build -t hop-bento-tren-mang .
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/hop-bento-tren-mang:latest .
+
+      - name: Buoc 4 - Cho hang ra Tong kho (Push len Docker Hub)
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/hop-bento-tren-mang:latest
