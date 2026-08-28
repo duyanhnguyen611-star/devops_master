@@ -1,0 +1,21 @@
+services:
+  he_thong_db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: matkhau_sieu_bao_mat
+      MYSQL_DATABASE: du_lieu_khach_hang
+    ports:
+      - "3307:3306"
+
+  giao_dien_quan_ly:
+    image: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - he_thong_db
+
+  # Them chiec hop thu 3: Ung dung Java cua chung ta
+  ung_dung_java:
+    build: .  # Lenh nay bao Docker tu dong doc Dockerfile o thu muc hien tai
+    depends_on:
+      - he_thong_db # Cho DB chay truoc
